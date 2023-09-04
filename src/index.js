@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
+  createHashRouter,
+  HashRouter
 } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CreateQuestionsAuth from './CreateQuestions';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
-    path: "/:id?",
+    path: "/",
     element: <App />
   },
   {
