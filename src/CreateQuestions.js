@@ -11,7 +11,7 @@ import { collection, getDocs } from "firebase/firestore"
 
 const baseQuestionObj = {question: "blank", type: "0", details: ""}
 
-export default function CreateQuestionsAuth() {
+export default function CreateQuestionsAuth({createPagePath, homePagePath}) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [error, setError] = useState(null)
 
@@ -55,12 +55,12 @@ export default function CreateQuestionsAuth() {
             </div>
         )
     } else {
-        return <CreateQuestions />
+        return <CreateQuestions createPagePath={createPagePath} homePagePath={homePagePath} />
     }
 
 }
 
-function CreateQuestions() {
+function CreateQuestions({createPagePath, homePagePath}) {
 
     const [selectedIndex, setSelectedIndex] = useState(0)
     const [questionArray, setQuestionArray] = useState([baseQuestionObj])
@@ -93,7 +93,7 @@ function CreateQuestions() {
     
     return (
         <div className={style.page}>
-            <Header {...props} get={get} />
+            <Header {...props} get={get} createPagePath={createPagePath} homePagePath={homePagePath} />
             <div className={style.page_container}>
                 <Sidebar {...props} />
                 <Main {...props} />

@@ -3,7 +3,7 @@ import style from './style.module.scss'
 import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
-export default function Header({questionArray, questionsQuery, setSelectedIndex, setQuestionArray, baseQuestionObj, get}) {
+export default function Header({questionArray, createPagePath, homePagePath, questionsQuery, setSelectedIndex, setQuestionArray, baseQuestionObj, get}) {
 
     const [title, setTitle] = useState("")
     const [id, setId] = useState("")
@@ -42,7 +42,7 @@ export default function Header({questionArray, questionsQuery, setSelectedIndex,
             }
         },
         link: () => {
-            alert(window.location.href.replace("create", id))
+   
         },
         delete: async () => {
             const response = window.confirm("sikker på du vil slette?")
@@ -98,7 +98,7 @@ export default function Header({questionArray, questionsQuery, setSelectedIndex,
                 <div onClick={() => event.upload()} className={style.button}>
                     <span>Gem</span>
                 </div>
-                <a href={window.location.href.replace("create", id)} target="_blank" className={style.button_link}>
+                <a href={window.location.href.replace(createPagePath, homePagePath+id)} target="_blank" className={style.button_link}>
                     <span>Link</span>
                 </a>
                 <div onClick={() => event.delete()} className={style.button_delete}>

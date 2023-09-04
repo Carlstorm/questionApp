@@ -6,14 +6,14 @@ import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 import { db } from './firebase';
 
 
-function App() {
+function App({homePagePath}) {
   const {id} = useParams();
   if (id)
-    return <Questions id={id}/>
-  return <SelectQuestions />
+    return <Questions id={id} homePagePath={homePagePath} />
+  return <SelectQuestions homePagePath={homePagePath} />
 }
 
-function Questions({id}) {
+function Questions({id, homePagePath}) {
   const navigate = useNavigate()
   const [questions, setQuestions] = useState(null)
   useEffect(() => {get()},[id])
@@ -23,7 +23,7 @@ function Questions({id}) {
       const docSnap = await getDoc(docRef);
 
       if (!docSnap.exists()) {
-        navigate("/");
+        navigate(homePagePath);
         return
       }
       setQuestions(docSnap.data())
@@ -37,7 +37,7 @@ function Questions({id}) {
   </p>
 }
 
-function SelectQuestions() {
+function SelectQuestions({homePagePath}) {
   const navigate = useNavigate()
   const [questionsQuery, setQuestionsQuery] = useState([])
   useEffect(() => {get()},[])
@@ -57,7 +57,7 @@ function SelectQuestions() {
 
   const event = {
     select: (value) => {
-      navigate(`/${value}`);
+      navigate(`${homePagePath}${value}`);
     }
   }
 

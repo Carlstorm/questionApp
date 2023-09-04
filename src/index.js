@@ -3,22 +3,23 @@ import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
-  createHashRouter,
-  HashRouter
 } from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CreateQuestionsAuth from './CreateQuestions';
 
-const router = createHashRouter([
+const homePagePath = "/questionApp/"
+const createPagePath = "/questionApp/create"
+
+const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />
+    path: `${homePagePath}:id?`,
+    element: <App homePagePath={homePagePath} />
   },
   {
-    path: "/create",
-    element: <CreateQuestionsAuth />
+    path: `${createPagePath}`,
+    element: <CreateQuestionsAuth createPagePath={createPagePath} homePagePath={homePagePath} />
   }
 ])
 
