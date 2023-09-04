@@ -1,0 +1,165 @@
+.Sidebar {
+    overflow-y: auto;
+    max-height: calc(100vh - 45px);
+}
+
+.question {
+    cursor: pointer;
+    padding: 8px 16px;
+    min-height: 24px;
+    border-bottom: 1px solid rgb(224, 224, 224);
+    &_selected {
+        @extend .question;
+        background: lightblue;
+    }
+}
+
+.add {
+    width: 32px;
+    height: 32px;
+    font-weight: bold;
+    background: lightblue;
+    margin: 16px;
+    position: relative;
+    border-radius: 8px;
+    cursor: pointer;
+    &>span {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 49%;
+        top: 36%;
+        font-size: 32px;
+        color: white;
+    }
+    &:hover {
+        background: rgb(123, 205, 233);
+    }
+}
+
+.input {
+    padding: 0px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid lightblue;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(100, 100, 100);
+    letter-spacing: 1px;
+    min-width: 600px;
+
+    &::placeholder {
+        color: lightgray;
+    }
+    
+    &:focus {
+        border: none;
+        outline: none;
+        border-bottom: 2px solid rgb(123, 205, 233);;
+    }
+}
+
+.selectInput {
+    cursor: pointer;
+    padding: 0px;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid lightblue;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(100, 100, 100);
+    letter-spacing: 1px;
+    min-width: 300px;
+
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+    gap: 24px;
+    box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.33)
+}
+
+.button {
+    cursor: pointer;
+    padding: 4px 16px;
+    background: lightblue;
+    border-radius: 4px;
+    color: white;
+    &:hover {
+        background: rgb(123, 205, 233);
+    }
+    &_wrap {
+        display: flex;
+        gap: 16px;
+    }
+
+    &_link {
+        @extend .button;
+        text-decoration: none;
+        background: rgb(183, 173, 230);
+        &:hover {
+            background: rgb(114, 94, 201);
+        }
+    }
+
+    &_delete {
+        @extend .button;
+        background: rgb(230, 173, 173);
+        &:hover {
+            background: rgb(204, 106, 106);
+        }
+    }
+
+}
+
+
+.main {
+    &>div {
+        display: flex;
+        flex-direction: column;
+    }
+    & label {
+        padding: 8px 2px;
+        letter-spacing: 1px;
+        color: gray;
+    }
+    & select {
+        padding: 8px 8px;
+        border-radius: 8px;
+        border: solid 1px lightblue;
+        font-size: 16px;
+        letter-spacing: 1px;
+        &:focus {
+            outline: none;
+            border: solid 1px rgb(123, 205, 233);
+        }  
+    }
+    & textarea {
+        font-family: inheritx;
+        height: 128px;
+        padding: 8px 8px;
+        border-radius: 8px;
+        border: solid 1px lightblue;
+        font-size: 16px;
+        letter-spacing: 1px;
+        &:focus {
+            outline: none;
+            border: solid 1px rgb(123, 205, 233);
+        }
+    }
+
+    & input {
+        font-family: inheritx;
+        padding: 8px 8px;
+        border-radius: 8px;
+        border: solid 1px lightblue;
+        font-size: 16px;
+        letter-spacing: 1px;
+        &:focus {
+            outline: none;
+            border: solid 1px rgb(123, 205, 233);
+        }
+    }
+}

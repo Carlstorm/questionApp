@@ -1,0 +1,14 @@
+[
+    {
+        "title": "question 1",
+        "anwsers": ["yes", "no"]
+    },
+    {
+        "title": "question 2",
+        "anwsers": ["yes", "no"]
+    },
+    {
+        "title": "question 3",
+        "anwsers": ["yes", "no"]
+    }
+]

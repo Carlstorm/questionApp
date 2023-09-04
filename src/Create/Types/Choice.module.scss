@@ -1,0 +1,81 @@
+.component {
+    width: 100%;
+    &_content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+.labels {
+    display: flex;
+    gap: 16px;
+    &>label {
+        &:nth-child(1) {
+            flex: 1;
+        }
+        &:nth-child(2) {
+            max-width: 200px;
+            width: 200px;
+            padding: 8px 0;
+        }
+    }
+}
+
+.add {
+    width: 32px;
+    height: 32px;
+    font-weight: bold;
+    background: lightblue;
+    position: relative;
+    border-radius: 8px;
+    cursor: pointer;
+    &>span {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 49%;
+        top: 36%;
+        font-size: 32px;
+        color: white;
+    }
+    &:hover {
+        background: rgb(123, 205, 233);
+    }
+}
+
+
+.answers {
+    display: flex;
+    gap: 16px;
+    &>* {
+        &:nth-child(1) {
+            flex: 1;
+        }
+        &:nth-child(2) {
+            display: flex;
+            align-items: center;
+            max-width: 200px;
+            width: 200px;
+        }
+    } 
+}
+
+.checkInput {
+    cursor: pointer;
+    padding: 8px 8px;
+    border-radius: 8px;
+    border: solid 1px lightblue;
+    font-size: 16px;
+    letter-spacing: 1px;
+    height: 28px;
+    width: 34px;
+    margin: 0;
+}
+
+.textInput {
+    padding: 8px 8px;
+    border-radius: 8px;
+    border: solid 1px lightblue;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
