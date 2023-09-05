@@ -9,8 +9,6 @@ export default function Main(props) {
 
     const {questionArray, setQuestionArray, selectedIndex} = props
 
-    console.log(questionArray, selectedIndex)
-
     const questionObj = questionArray[selectedIndex]
 
     const event = {

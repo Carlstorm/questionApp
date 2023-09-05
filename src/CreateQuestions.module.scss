@@ -9,15 +9,80 @@
                 width: 346px;
             }
             &:nth-child(2) {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                padding: 16px 32px;
-                gap: 16px;
+
             }
         }
     }
     
+}
+.alert {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin: 16px 8px;
+    opacity: 0.6;
+    &>span {
+        box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        background: white;
+        pointer-events: none;
+        padding: 8px 16px;
+        color: orange;
+    }
+}
+
+.home {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &>div {
+        width: 500px;
+        padding: 24px;
+        box-shadow: 1px 1px 8px 0px #00000021;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        &>div {
+            display: flex;
+            flex-direction: column;
+            &>label {
+                padding: 0 2px 4px 2px;
+                color: gray;
+            }
+            &>select {
+                padding: 8px 8px;
+                border-radius: 8px;
+                border: solid 1px lightblue;
+                font-size: 16px;
+                letter-spacing: 1px;
+                &:focus {
+                    border: none;
+                    outline: none;
+                    border: 1px solid rgb(123, 205, 233);
+                }
+            }
+        }
+        &>a {
+            text-align: center;
+            text-decoration: none;
+            margin-top: 16px;
+            font-weight: bold;
+            background: rgb(173, 230, 181);
+            color: white;
+            border-radius: 8px;
+            padding: 12px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            &:hover {
+                background: rgb(88, 218, 105);
+            }
+        }
+    }
 }
 
 .logIn {
@@ -50,7 +115,7 @@
                 &:focus {
                     border: none;
                     outline: none;
-                    border: 1px solid rgb(123, 205, 233);;
+                    border: 1px solid rgb(123, 205, 233);
                 }
             }
         }
@@ -70,10 +135,179 @@
         }
 
         padding: 24px;
-        box-shadow: 1px 1px 8px 0px #00000042;
+        box-shadow: 1px 1px 8px 0px #00000021;
         border-radius: 8px;
         display: flex;
         flex-direction: column;
         gap: 16px;
     }
 }
+
+.load {
+    transform: translate(-50%, -50%);
+    top: 47%;
+    left: 50%;
+    position: absolute;
+    font-size: 24px;
+}
+
+.solvePage {
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #f7f7f7;
+    justify-content: center;
+    align-items: center;
+    animation: fade 0.2s ease-in;
+
+    &_header {
+        top: 0;
+        position: absolute;
+        background: rgb(27,27,27);
+        background: radial-gradient(at bottom, rgba(55,55,55,1) 0%, rgba(27,27,27,1) 100%);
+        height: 184px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &>h1 {
+            color: white;
+            text-align: center;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px !important;
+            font-size: 36px;
+            transform: translateY(-14px);
+        }
+    }
+    &_wrap {
+        position: relative;
+        z-index: 9;
+        margin: 142px 0 64px 0;
+        padding: 64px 64px 64px 64px;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        gap: 128px;
+        border-radius: 2px;
+        width: calc(100% - (128px));
+        
+        @media (min-width: 500px) {
+            width: calc(100% - (128px));
+        }
+        @media (min-width: 900px) {
+            width: calc(100% - (224px));
+        }
+        @media (min-width: 1400px) {
+            width: calc(100% - (224px * 2));
+        }
+
+        @media (min-width: 1600px) {
+            width: calc(100% - (224px * 3));
+        }
+        box-shadow: 1px 1px 16px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    &_question {
+        display: flex;
+        justify-content: left;
+        gap: 32px;
+        & h2 {
+            margin: 0;
+        }
+        &_number {
+            &_solved {
+                @extend .solvePage_question_number;
+                background: none;
+                outline: 2px solid #2ecc71;
+                & span {
+                    color: #2ecc71 !important;
+                }
+            }
+            margin: 4px;
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+            background: #333;
+            position: relative;
+            & span {
+                font-weight: bold;
+                font-size: 14px;
+                color: white;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                left: 52.5%;
+                top: 45.5%;
+            }
+        }
+    }
+}
+
+@keyframes fade {
+    from {opacity: 0%;}
+    to {opacity: 100%;}
+  }
+.footer {
+    position: relative;
+    width: 100%;
+    height: 64px;
+    margin-top: 64px;
+}
+
+.submitButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    &_wrapper {
+        position: relative; 
+    }
+    & a {
+        display: block;
+        width: 250px;
+        height: 50px;
+        line-height: 50px;
+        font-weight: bold;
+        text-decoration: none;
+        background: #333;
+        text-align: center;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: 3px solid #333;
+        transition: all .35s;
+        &:hover {
+            width: 200px;
+            border: 3px solid #2ecc71;
+            background: transparent;
+            color: #2ecc71;
+            &+ .submitButton_icon {
+                border: 3px solid #2ecc71;
+                right: -25%;
+            }
+        }
+    }
+
+    &_icon {
+        width: 50px;
+        height: 50px;
+        border: 3px solid transparent;
+        position: absolute;
+        transform: rotate(45deg);
+        right: 0;
+        top: 0;
+        z-index: -1;
+        transition: all .35s;
+        & svg {
+            width: 30px;
+            position: absolute;
+            top: calc(50% - 15px);
+            left: calc(50% - 15px);
+            transform: rotate(-45deg);
+            fill: #2ecc71;
+            transition: all .35s;
+        }
+    }
+  }

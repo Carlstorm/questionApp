@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {
-  createBrowserRouter,
+  createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 import './index.css';
@@ -9,15 +9,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CreateQuestionsAuth from './CreateQuestions';
 
-const homePagePath = "/questionApp/"
-const createPagePath = "/questionApp/create"
+const homePagePath = "/"
+const createPagePath = "/create"
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
+    exact: true,
     path: `${homePagePath}:id?`,
-    element: <App homePagePath={homePagePath} />
+    element: <App homePagePath={homePagePath} createPagePath={createPagePath} />
   },
   {
+    exact: true,
     path: `${createPagePath}`,
     element: <CreateQuestionsAuth createPagePath={createPagePath} homePagePath={homePagePath} />
   }

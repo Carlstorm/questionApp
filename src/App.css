@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+p, span, a, h1, h2, h3, h4, input, textarea, select, option, div {
+  font-family: 'Lato', sans-serif !important;
+  letter-spacing: 2px !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

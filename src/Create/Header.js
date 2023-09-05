@@ -3,9 +3,8 @@ import style from './style.module.scss'
 import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
-export default function Header({questionArray, createPagePath, homePagePath, questionsQuery, setSelectedIndex, setQuestionArray, baseQuestionObj, get}) {
+export default function Header({title, needsUpdate, setTitle, questionArray, setLastSavedTitle, setLastSavedQuestionArray, createPagePath, homePagePath, questionsQuery, setSelectedIndex, setQuestionArray, baseQuestionObj, get}) {
 
-    const [title, setTitle] = useState("")
     const [id, setId] = useState("")
 
     const event = {
@@ -61,7 +60,9 @@ export default function Header({questionArray, createPagePath, homePagePath, que
         changeSelection: (value, query) => {
             setSelectedIndex(0)
             if (value === "new") {
+                setLastSavedQuestionArray([baseQuestionObj])
                 setQuestionArray([baseQuestionObj])
+                setLastSavedTitle("")
                 setTitle("")
                 setId("")
                 return
@@ -72,6 +73,8 @@ export default function Header({questionArray, createPagePath, homePagePath, que
             else
                 questionObj = questionsQuery.find(q => q.id === value)
             setQuestionArray(questionObj.questions)
+            setLastSavedQuestionArray(questionObj.questions)
+            setLastSavedTitle(questionObj.titel)
             setTitle(questionObj.titel)
             setId(questionObj.id)
         },
@@ -80,6 +83,7 @@ export default function Header({questionArray, createPagePath, homePagePath, que
         }
     }
 
+    console.log(needsUpdate)
     return (
         <div className={style.header}>
             <select name="selection" id="selection" onChange={(e) => event.changeSelection(e.target.value)} className={style.selectInput}>
@@ -90,12 +94,12 @@ export default function Header({questionArray, createPagePath, homePagePath, que
             </select>
             <input className={style.input} value={title} onInput={(e) => event.changeTitle(e)} placeholder='titel på spørgeskema'></input>
             {!id ?
-            <div onClick={() => event.upload()} className={style.button}>
+            <div onClick={() => event.upload()} className={!needsUpdate ? style.button : style.button_highlight}>
                 <span>Gem</span>
             </div>
             : 
             <div className={style.button_wrap}>
-                <div onClick={() => event.upload()} className={style.button}>
+                <div onClick={() => event.upload()} className={!needsUpdate ? style.button : style.button_highlight}>
                     <span>Gem</span>
                 </div>
                 <a href={window.location.href.replace(createPagePath, homePagePath+id)} target="_blank" className={style.button_link}>

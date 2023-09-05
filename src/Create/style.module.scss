@@ -26,8 +26,8 @@
     &>span {
         position: absolute;
         transform: translate(-50%, -50%);
-        left: 49%;
-        top: 36%;
+        left: 53%;
+        top: 43%;
         font-size: 32px;
         color: white;
     }
@@ -78,17 +78,24 @@
     justify-content: space-between;
     padding: 8px 16px;
     gap: 24px;
-    box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.33)
+    box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.33);
+    z-index: 99;
+    position: relative;
 }
 
 .button {
     cursor: pointer;
-    padding: 4px 16px;
+    padding: 4px 16px 6px 16px;
     background: lightblue;
     border-radius: 4px;
     color: white;
+    &_highlight {
+        @extend .button;
+        animation: slidein 2s;
+        animation-iteration-count: infinite;
+    }
     &:hover {
-        background: rgb(123, 205, 233);
+        background: rgb(123, 205, 233) !important;
     }
     &_wrap {
         display: flex;
@@ -100,7 +107,7 @@
         text-decoration: none;
         background: rgb(183, 173, 230);
         &:hover {
-            background: rgb(114, 94, 201);
+            background: rgb(114, 94, 201) !important;
         }
     }
 
@@ -108,14 +115,37 @@
         @extend .button;
         background: rgb(230, 173, 173);
         &:hover {
-            background: rgb(204, 106, 106);
+            background: rgb(204, 106, 106) !important;;
         }
     }
 
 }
 
+@keyframes slidein {
+    0% {
+        box-shadow: 0 0 0px 0px rgb(123, 205, 233);
+        background: lightblue;
+    }
+  
+    50% {
+        box-shadow: 0 0 20px 0px rgb(123, 205, 233);
+        background: rgb(123, 205, 233);
+    }
+
+    100% {
+        box-shadow: 0 0 0px 0px rgb(123, 205, 233);
+        background: lightblue;
+    }
+  }
 
 .main {
+    overflow-y: auto;
+    max-height: calc(100vh - 124px);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 32px 64px 32px;
+    gap: 16px;
     &>div {
         display: flex;
         flex-direction: column;

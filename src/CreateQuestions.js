@@ -8,8 +8,9 @@ import { db } from "./firebase"
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { collection, getDocs } from "firebase/firestore"
 
-
 const baseQuestionObj = {question: "blank", type: "0", details: ""}
+
+let savedState = null
 
 export default function CreateQuestionsAuth({createPagePath, homePagePath}) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -62,19 +63,44 @@ export default function CreateQuestionsAuth({createPagePath, homePagePath}) {
 
 function CreateQuestions({createPagePath, homePagePath}) {
 
+    const [title, setTitle] = useState("")
     const [selectedIndex, setSelectedIndex] = useState(0)
+    const [lastSavedQuestionArray, setLastSavedQuestionArray] = useState([baseQuestionObj])
+    const [lastSavedTitle, setLastSavedTitle] = useState("")
     const [questionArray, setQuestionArray] = useState([baseQuestionObj])
     const [questionsQuery, setQuestionsQuery] = useState([])
+    const [needsUpdate, setNeedsUpdate] = useState(false)
 
     const props = {
+        title, 
+        setTitle,
+        lastSavedTitle,
+        setLastSavedTitle,
+        lastSavedQuestionArray,
+        setLastSavedQuestionArray,
         questionsQuery,
         questionArray,
         setQuestionArray,
         selectedIndex,
         setSelectedIndex,
         baseQuestionObj,
+        needsUpdate,
     }
 
+
+    useEffect(() => {
+        if (JSON.stringify(lastSavedQuestionArray) != JSON.stringify(questionArray)) {
+            setNeedsUpdate(true)
+            return
+        }
+        if (title != lastSavedTitle) {
+            setNeedsUpdate(true)
+            return
+        }
+        setNeedsUpdate(false)
+
+    },[title, questionArray])
+    
     useEffect(() => {get()},[])
 
     const get = async (callbackFunction, val) => {
@@ -93,6 +119,11 @@ function CreateQuestions({createPagePath, homePagePath}) {
     
     return (
         <div className={style.page}>
+            {needsUpdate ? 
+                <div className={style.alert}>
+                    <span>der er lavet ændringer husk at gem!</span>
+                </div>
+            : null}
             <Header {...props} get={get} createPagePath={createPagePath} homePagePath={homePagePath} />
             <div className={style.page_container}>
                 <Sidebar {...props} />
